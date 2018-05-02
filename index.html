@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Anonymity on the blockchain</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +24,254 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown data-separator="^\r?\n---\r?\n$" data-separator-vertical="^\r?\n--\r?\n$">
+					<textarea data-template>
+						## Anonymity on the blockchain
+						<!-- .slide: id="start" -->
+			
+						The difference between theoretical anonymity and actual anonymity.
+
+						---
+						
+						## The nature of a distributed ledger
+
+						- All transactions are transparent
+						- All transactions are broadcasted
+
+						*Anonymity can only be obtained by breaking the link between transactions and identities.*<!-- .element: class="fragment" data-fragment-index="1" -->
+						
+						*(Yli-Huumo et al., 2016)*<!-- .element: class="fragment" data-fragment-index="1" -->
+
+						Note:
+						Breaking the link, is breaking the flow of information. All information is out there, but there's no way of tying the pieces together.
+						The pieces in case being: the transaction and the identity.
+
+						---
+
+						## Privacy vs. Anonymity
+						<!-- .slide: id="privacy" -->
+
+						- Privacy: Security of content
+						- Anonymity: Security of identity
+
+						Note:
+						These terms are used interchangeably.
+
+						Privacy:  You're naked, but no one sees you.
+
+						Anonymity:  You're walking around the city naked, but nobody knows your name
+
+						Bitcoin transactions are definitely *NOT* private, but it does offer you (presumed) anonimity.
+						bitcoin transaction is permanently recorded and visible in the Bitcoin blockchain (Nakamoto, 2008).
+						
+						---
+
+						## The separation of transaction and identity
+						
+						- Asymmetric encryption system
+						- Hash of the public key acts as an address
+						- Address is the *pseudonym* (Breuker, 2013)
+
+						Note:
+						Encryption to the rescue
+						This is what is meant by pseudonymity in the blockchain.
+						Quite early it was explained to me that Bitcoin wasn't really anonymous, because it was pseudonymous.
+						Or that's the way I understood it initially.
+						But that's not true at all.
+
+						--
+
+						## Pseudonym
+						Derived from the Greek ψευδώνυμον (pseudṓnymon)
+
+						- ψεῦδος (pseûdos): Lie, falsehood
+						- ὄνομα (ónoma): Name
+
+						## Anonymity
+						Derived from the Greek ἀνωνυμία (anonymia)
+
+						- ἀν (an, prefix): Without
+						- ὄνομα (ónoma): Name
+
+						Note:
+						Pseudonymity is a means to achieve anonymity. It isn't short for pseudo-anonymous. It's not falsly anonymous.
+						It's not failing to be anonymous because it *is* pseudonymous; it's failing to be anonymous becasue the pseudonymity *fails*
+						It's not falsy anonymous, or at least it isn't intended that way.
+						But it did, somewhat, turned out that way.
+
+						---
+						
+						## Claim ownership, keep anonymity
+
+						Account ownership is established by owning the corresponding private key
+						
+						thus making it possible for the account holder to claim ownership of an address without revealing its identity.
+						
+						Note:
+						This might be assumed common knowledge for everyone here, but it's worth repeating.
+						It's the private part of the key that gives you the power to claim ownership.
+						This is the tool by which you, and only you, can overcome the barricade in the flow of information.
+
+						---
+
+						## Anonymity undermined
+
+						- Internet is non-anonymous
+						- Transparency of all transactions
+
+						Note:
+						Nobody claims that the encryption part of Bitcoin is faulty. (If I could claim that, I certainly wouldn't, I would be raking in all those bitcoins)
+						Non-anonymous infrastructure of the internet
+						Inherent transparency of all transactions
+
+						---
+
+						## P2P infrastructure
+
+						- Two sources of transaction information
+							- The blocks
+							- The mempool (Kaminsky, 2011)
+
+						Note: 
+						The blocks that are set in stone
+						The loose transactions that are waiting to be confirmed.
+						Both are gossiped around the network
+						Alice tells Bob, Bob tells Charly, Charly tells David, David tells Eric, Frank, Gary, etc.
+
+						--
+
+						## The relay race
+
+						- Connect to every node at once
+						- The first node to inform you is the source
+						
+						Note:
+						Dan Kaminsky presented his findings already in 2011 on the Black Hat USA conference in 2011. 
+						He created a Bitcoin clinet named Blitcoin to do exactly that.
+						Also, you don't need to connect to all nodes.
+						Unreachable nodes? Nodes behind NAT (Network Address Translation) that only connect via outbound links.
+						Be a node they connect to themselves (Each node connects to ~7 nodes)
+						You "only" need a few hundred to a few thousand nodes.
+
+						---
+
+						## Account clustering
+
+						Cluster accounts based on
+						
+						- Inputs
+						- Change addresses
+
+						(Meiklejohn et al., 2013)
+
+						Note:
+						Also called Transaction Graph Analysis
+
+						Addresses are considered to be in control of the same entity
+						Put simply, we say that the controller of an address is the entity (or in exceptional cases multiple entities) 
+						that is expected to participate in transactions involving that address.
+
+						change addresses are the mechanism used to give money back to the input user in a transaction, as bitcoins can be divided only by being spent.
+						The change address is created internally by the Bitcoin client and never re-used; as such, 
+						a user is unlikely to give out this change address to other users (e.g., for accepting payments), 
+						and in fact might not even know the address unless he inspects the block chain. 
+						If we can identify change addresses, we can therefore potentially cluster not only the input addresses for a transaction 
+						but also the change address and the input user
+
+						Tracking Change address makes it possible to follow a peeling chain, 
+						a single address begins with a relatively large amount of bitcoins. 
+						A smaller amount is then “peeled” off this larger amount, creating a transaction in which a small amount is transferred to one address 
+						and the remainder is transferred to a one-time change address.
+						This process is repeated —potentially for hundreds or thousands of hops— until the larger amount is pared down
+
+						--
+
+						## Tag known entities
+
+						- Mining pools
+						- Wallets
+						- Exchanges
+						- Vendors
+						- Gambling
+						- Known thefts
+
+						Note:
+						
+						By tagging a relative small amount of entities, you can cluster huge amount of addresses that belong to those entities.
+						The unidentifiable clusters are still clustered and are considered to be entities.
+
+						At some point a thief will want to cash out in fiat currency (for now anyway), 
+						which means it will have to interface with an exchange to be able to cash out at scale.
+
+						More often than not you have to personally identify yourself to be able to use an exchange.
+
+						---
+
+						## Improving anonymity
+
+						*Transaction mixing* or *Coin mixing*
+
+						A group of entities exchange their coins with each other to obfuscate the relations between entities and coins from an outside perspective
+						
+						(Ruffing, Moreno-Sanchez and Kate, 2013).
+
+						Note: I'm focusing here on Bitcoin. There are altcoins like Zerocash that offer different approaches to this problem.
+						But my research will - for now - focus on bitcoin exclusively
+
+						---
+
+						## Different types of transaction mixing
+
+						- Mixing services
+						- Composite signatures
+						- Lightning network
+
+						Note: 
+						Prior to the advent of trustless alternatives, mixing services (also called tumblers) were used to mix one's funds with other people's money. 
+						In traditional financial systems, the equivalent would be moving funds through banks located in countries with strict bank-secrecy laws
+						such as the Cayman Islands, the Bahamas and Panama. But this defies the distributed nature of Bitcoin.
+
+						Segwit created the opportunity to use a different signature scheme.
+						until now it has not been possible to utilize Schnorr in Bitcoin. Another type of signature scheme, 
+						Elliptic Curve Digital Signature Algorithm (ECDSA), is baked into the Bitcoin protocol, and changing that would require a hard fork
+
+						With Segregated Witness, all signature data is moved to a separate part of the transaction: the witness, which is not embedded in the “old” Bitcoin protocol. 
+						And thanks to script versioning, almost any rule applied in the witness can be changed through a soft fork. Including the type of signature scheme used.
+
+						But a privacy-enhancing trick invented by Bitcoin Core developer Gregory Maxwell,  CoinJoin, allows different users to combine all their transactions into a single transaction. 
+						CoinJoin is Trustless.
+						That one transaction will include multiple inputs coming from different payers, which sends money to multiple outputs, belonging to different payees.
+
+						The Lightning Network is an off-chain payment channel solution. Off-chain means that the transactions done over the payment channel are not registered in the blockchain. To open up a channel, two entities have to agree an opening balance and both have to create transactions on the blockchain that represent that balance. When a new payment has to be made over the channel, the balance is updated to account for the new payment. At any moment in time an entity can choose to close the payment channel by broadcasting the current state of the balance sheet to the blockchain and by doing so securing their balances (Herrera-joancomart, 2016).
+						The main goal of the Lightning Network is to increase the throughput of the Bitcoin network, but the Lightning Network has some interesting properties that affect the obtainable level of anonymity. To minimize the costs of opening channels, the Lightning protocol searches if a route between sender and receiver is possible by hopping over channels that are already open. It uses an Onion Routing protocol to establish this route over multiple nodes. This means that the hops between sender and receiver are hidden, resulting in a de facto detachment of the link between source and destination (Herrera-joancomart, 2016).
+
+						---
+
+						## Looking at transaction mixing differently
+
+						Transaction mixing is a second obstruction of the flow of information.
+
+						Note: 
+						Transaction mixing breaks the link between inputs and outputs. The first obstruction being the concept of pseudonym addresses that break the flow of information by hiding the link between transaction and identity 
+						So no you have 2 obstructions in the flow of information.
+
+						---
+
+						## Is it enough?
+
+						That's what my research is about:
+
+						*Account clustering tecchniques in combination with supervised machine learning*
+
+						Note: 
+						This presentation has an open ending.
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/QXtOdSgf6Ic?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</textarea>
+				</section>
 			</div>
 		</div>
 
